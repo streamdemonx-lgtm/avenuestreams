@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Avenue Streams</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="hero">
+  <h1>AVENUE STREAMS</h1>
+  <p>Premium OTT Subscriptions • Instant Delivery</p>
+  <button onclick="openCart()">Buy Now</button>
+</header>
+
+<section class="products">
+  <div class="card" onclick="selectPlan('Netflix')">Netflix</div>
+  <div class="card" onclick="selectPlan('Prime Video')">Prime Video</div>
+  <div class="card" onclick="selectPlan('Disney+')">Disney+</div>
+  <div class="card" onclick="selectPlan('Crunchyroll')">Crunchyroll</div>
+</section>
+
+<!-- CART -->
+<div id="cart" class="popup">
+  <div class="popup-box">
+    <h2 id="planName"></h2>
+    <input type="text" placeholder="Your Name" />
+    <input type="email" placeholder="Email" />
+    <input type="text" placeholder="WhatsApp / Telegram" />
+    <button onclick="openQR()">Proceed to Pay</button>
+    <button class="close" onclick="closeCart()">Close</button>
+  </div>
+</div>
+
+<!-- QR -->
+<div id="qr" class="popup">
+  <div class="popup-box">
+    <h3>Pay via UPI</h3>
+    <p class="amount">Pay the shown amount</p>
+    <img src="qr.png" class="qr" />
+    <p id="timer">10:00</p>
+    <input type="text" placeholder="Enter UTR ID" />
+    <button onclick="submit()">Submit Payment</button>
+    <button class="close" onclick="closeQR()">Close</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+                          </html>
