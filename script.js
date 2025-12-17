@@ -1,37 +1,105 @@
-let time = 600;
-let timer;
+let selectedPlan = "";
 
-function selectPlan(name){
-  document.getElementById("planName").innerText = name;
-  document.getElementById("cart").style.display = "block";
+function selectPlan(plan) {
+  selectedPlan = plan;
+  document.getElementById("planName").innerText = plan;
+  document.getElementById("cart").style.display = "flex";
 }
 
-function openCart(){
-  document.getElementById("cart").style.display = "block";
+function openCart() {
+  document.getElementById("cart").style.display = "flex";
 }
 
-function closeCart(){
+function closeCart() {
   document.getElementById("cart").style.display = "none";
 }
 
-function openQR(){
+function openQR() {
   document.getElementById("cart").style.display = "none";
-  document.getElementById("qr").style.display = "block";
+  document.getElementById("qr").style.display = "flex";
   startTimer();
 }
 
-function closeQR(){
+function closeQR() {
   document.getElementById("qr").style.display = "none";
-  clearInterval(timer);
-  time = 600;
-  document.getElementById("timer").innerText = "10:00";
 }
 
-function startTimer(){
-  clearInterval(timer);
-  timer = setInterval(()=>{
+let time = 600;
+function startTimer() {
+  const timerEl = document.getElementById("timer");
+  timerEl.innerText = "10:00";
+
+  const interval = setInterval(() => {
+    let min = Math.floor(time / 60);
+    let sec = time % 60;
+    timerEl.innerText =
+      min + ":" + (sec < 10 ? "0" + sec : sec);
+
+    if (time <= 0) {
+      clearInterval(interval);
+      timerEl.innerText = "Expired";
+    }
     time--;
-    let m = Math.floor(time/60);
-    let s = time % 60;
-    document.getElementById("timer").innerText =
-      `${m}:${s < 10 ? "0" : ""}${s
+  }, 1000);
+}
+
+function submitPayment() {
+  alert(
+    "Payment received!\nPlan: " +
+      selectedPlan +
+      "\nWe will contact you shortly."
+  );
+  closeQR();
+}let selectedPlan = "";
+
+function selectPlan(plan) {
+  selectedPlan = plan;
+  document.getElementById("planName").innerText = plan;
+  document.getElementById("cart").style.display = "flex";
+}
+
+function openCart() {
+  document.getElementById("cart").style.display = "flex";
+}
+
+function closeCart() {
+  document.getElementById("cart").style.display = "none";
+}
+
+function openQR() {
+  document.getElementById("cart").style.display = "none";
+  document.getElementById("qr").style.display = "flex";
+  startTimer();
+}
+
+function closeQR() {
+  document.getElementById("qr").style.display = "none";
+}
+
+let time = 600;
+function startTimer() {
+  const timerEl = document.getElementById("timer");
+  timerEl.innerText = "10:00";
+
+  const interval = setInterval(() => {
+    let min = Math.floor(time / 60);
+    let sec = time % 60;
+    timerEl.innerText =
+      min + ":" + (sec < 10 ? "0" + sec : sec);
+
+    if (time <= 0) {
+      clearInterval(interval);
+      timerEl.innerText = "Expired";
+    }
+    time--;
+  }, 1000);
+}
+
+function submitPayment() {
+  alert(
+    "Payment received!\nPlan: " +
+      selectedPlan +
+      "\nWe will contact you shortly."
+  );
+  closeQR();
+}
